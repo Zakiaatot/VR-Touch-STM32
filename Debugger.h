@@ -14,7 +14,7 @@ private:
     ~Debugger();
 
 public:
-    void Setup(uint32_t portRate = 9600);
+    void Setup(uint32_t portRate);
 
     // Endline empty class
     struct ENDL

@@ -1,9 +1,8 @@
 #ifndef _ROCKER_H_
 #define _ROCKER_H_
 
+#include <cstdint>
 #include "NoneCopyAble.h"
-#include "Singleton.h"
-#include "config.h"
 
 class Debugger;
 class Serial;
@@ -11,13 +10,10 @@ class OutStream;
 
 class Rocker : private NoneCopyAble
 {
-    friend class Singleton<Rocker>;
-
-private:
-    explicit Rocker(const uint32_t vrXPin, const uint32_t vrYPin);
-    ~Rocker();
 
 public:
+    explicit Rocker(const uint32_t vrXPin, const uint32_t vrYPin);
+    ~Rocker();
     bool Update(); // return true if rocker is changed
 
     // rocker status
@@ -49,18 +45,6 @@ private:
     uint32_t vrYDeg_;
     Status xStatus_;
     Status yStatus_;
-};
-
-// ROCKER SINGLETON
-template <>
-class Singleton<Rocker>
-{
-public:
-    static Rocker &Instance()
-    {
-        static Rocker instance(ROCKER_CONFIG::VR_X, ROCKER_CONFIG::VR_Y);
-        return instance;
-    }
 };
 
 #endif //_ROCKER_H_

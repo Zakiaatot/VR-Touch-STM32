@@ -14,6 +14,18 @@ void Serial::Setup(uint32_t portRate)
     HardwareSerial::begin(portRate);
 }
 
+// none blocking
+int Serial::Recv(char *buf)
+{
+    int len = 0;
+    while (Available())
+    {
+        HardwareSerial::readBytes(buf++, 1);
+        ++len;
+    }
+    return len;
+}
+
 // blocking
 int Serial::RecvN(char *buf, size_t len)
 {

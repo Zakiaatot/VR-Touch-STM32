@@ -1,21 +1,24 @@
 #ifndef _PACKAGE_H_
 #define _PACKAGE_H_
 
-#include <stdint.h>
+#include <cstdint>
 
-#define CMD_REPORT_ROCKER (uint16_t)0x01
-#define CMD_CHANGE_MOTOR (uint16_t)0x02
+enum class PACKAGE_CMD : uint16_t
+{
+    REPORT_ROCKER = 0x01,
+    CHANGE_MOTOR = 0x02,
+};
 
 struct PackageHead
 {
-    uint16_t cmd;
-    uint16_t len;
+    uint16_t cmd_;
+    uint16_t len_;
 };
 
 struct Package
 {
-    PackageHead head;
-    char *body;
+    PackageHead head_;
+    char *body_;
 };
 
 #endif //_PACKAGE_H_

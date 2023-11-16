@@ -1,12 +1,12 @@
+#include <Arduino.h>
 #include "MainMCU.h"
-#include "Rocker.h"
-#include "Serial.h"
-#include "Package.h"
-#include "Stream.h"
+#include "Config.h"
+#include "AT.h"
 
 MainMCU::MainMCU()
-    : rocker_(Singleton<Rocker>::Instance()),
-      serial_(Singleton<Serial>::Instance())
+    : rocker_(ROCKER_CONFIG::VR_X, ROCKER_CONFIG::VR_Y),
+      serial_(SERIAL_CONFIG::RX, SERIAL_CONFIG::TX),
+      networkMCU_(Singleton<NetworkMCU>::Instance(serial_))
 {
 }
 
@@ -14,38 +14,20 @@ MainMCU::~MainMCU()
 {
 }
 
-void MainMCU::Setup() const
+void MainMCU::Setup()
 {
-    serial_.Setup();
+    serial_.Setup(SERIAL_CONFIG::BAUD_RATE);
 }
 
-void MainMCU::Loop() const
+void MainMCU::Loop()
 {
-    // report rocker status if changed
     if (rocker_.Update())
     {
-        OutStream os;
-        os << CMD_REPORT_ROCKER;
-        os.Skip(sizeof(PackageHead::len));
-        os << rocker_;
-        os.RePosition(sizeof(PackageHead::cmd));
-        uint16_t len = os.Len() - sizeof(PackageHead);
-        os << len;
-        // SERIAL.SendN(os.Data(), os.Len());
-
-        InStream is(os.Data());
-        uint16_t cmd;
-        uint32_t x, y;
-        is >> cmd >> len >> x >> y;
-
-        // serial_ << "CMD: " << cmd << ", LEN: " << len << serial_.endl;
-        // serial_ << "ROCKER: " << x << "," << y << serial_.endl;
+        // serial_ << rocker_ << serial_.endl;
     }
 
-    // receive motor change
     if (serial_.Available())
     {
     }
-
-    delay(100);
+    delay(1000);
 }

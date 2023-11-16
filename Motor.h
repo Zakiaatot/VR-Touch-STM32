@@ -7,7 +7,7 @@
 class Motor : NoneCopyAble
 {
 public:
-    Motor(const uint32_t IA, const uint32_t IB);
+    explicit Motor(const uint32_t IA, const uint32_t IB);
     ~Motor();
 
     void Setup() const;

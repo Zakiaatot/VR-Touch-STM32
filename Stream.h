@@ -1,14 +1,15 @@
 #ifndef _STREAM_H_
 #define _STREAM_H_
 
-#include <stdint.h>
+#include <cstdint>
 #include <cstring>
 #include "AutoPtr.h"
+#include "NoneCopyAble.h"
 
-class InStream
+class InStream : private NoneCopyAble
 {
 public:
-    InStream(const char *const data = 0);
+    explicit InStream(const char *const data = 0);
     ~InStream();
 
     void Reset(const char *const data = 0);
@@ -24,10 +25,10 @@ private:
     uint16_t dataPos_;
 };
 
-class OutStream
+class OutStream : private NoneCopyAble
 {
 public:
-    OutStream(uint32_t dSize = 128);
+    explicit OutStream(uint32_t dSize = 128);
     ~OutStream();
 
     const char *const Data() const;

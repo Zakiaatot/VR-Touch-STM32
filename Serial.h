@@ -3,21 +3,19 @@
 
 #include <HardwareSerial.h>
 #include "NoneCopyAble.h"
-#include "Singleton.h"
-#include "config.h"
 
 class Serial : private HardwareSerial, private NoneCopyAble
 {
-    friend class Singleton<Serial>;
 
-private:
+public:
     explicit Serial(const uint32_t rx, const uint32_t tx);
     ~Serial();
 
-public:
-    void Setup(uint32_t portRate = 9600);
+    void Setup(uint32_t portRate);
+    int Recv(char *buf);                       // none blocking
     int RecvN(char *buf, size_t len);          // blocking
     size_t SendN(const char *buf, size_t len); // blocking
+
     void Flush();
     bool Available();
     // Endline empty class
@@ -35,18 +33,6 @@ public:
     // Overload the >> operator
     Serial &operator>>(uint16_t &num);
     Serial &operator>>(uint32_t &num);
-};
-
-// SERIAL SINGLETON
-template <>
-class Singleton<Serial>
-{
-public:
-    static Serial &Instance()
-    {
-        static Serial instance(SERIAL_CONFIG::RX, SERIAL_CONFIG::TX);
-        return instance;
-    }
 };
 
 #endif //_SERIAL_H_

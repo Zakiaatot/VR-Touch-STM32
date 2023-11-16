@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "Rocker.h"
 #include "Debugger.h"
 #include "Serial.h"
@@ -123,7 +124,8 @@ Serial &operator<<(Serial &serial, const Rocker::Status &status)
 
 Serial &operator<<(Serial &serial, const Rocker &rocker)
 {
-    serial << " X: " << rocker.xStatus_ << ", Y: " << rocker.yStatus_;
+    serial << " X: " << rocker.xStatus_ << " " << rocker.vrXDeg_
+           << " , Y: " << rocker.yStatus_ << " " << rocker.vrYDeg_;
     return serial;
 }
 

@@ -5,14 +5,14 @@
 
 namespace DEBUGGER_CONFIG
 {
-    const uint32_t PORT_RATE = 9600;
+    const uint32_t BAUD_RATE = 9600;
     const uint32_t RX = PA10;
     const uint32_t TX = PA9;
 }
 
 namespace SERIAL_CONFIG
 {
-    const uint32_t PORT_RATE = 9600;
+    const uint32_t BAUD_RATE = 115200;
     const uint32_t RX = PA10;
     const uint32_t TX = PA9;
 }
