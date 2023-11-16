@@ -28,7 +28,7 @@ class Singleton<NetworkMCU>
 public:
     static NetworkMCU &Instance(Serial &serial_)
     {
-        static NetworkMCU instance(Serial_);
+        static NetworkMCU instance(serial_);
         return instance;
     }
 };

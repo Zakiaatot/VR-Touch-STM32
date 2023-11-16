@@ -27,6 +27,16 @@ public:
         CENTER = 5
     };
 
+    Status GetXStatus() const
+    {
+        return xStatus_;
+    }
+
+    Status GetYStatus() const
+    {
+        return yStatus_;
+    }
+
     // debug
     friend Debugger &
     operator<<(Debugger &debugger, const Rocker &rocker);

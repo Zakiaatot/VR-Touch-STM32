@@ -25,16 +25,18 @@ namespace ROCKER_CONFIG
 
 namespace MOTOR_CONFIG
 {
-    const uint32_t MOTOR_1_IA = PA6;
-    const uint32_t MOTOR_1_IB = PA5;
-    const uint32_t MOTOR_2_IA = PC5;
-    const uint32_t MOTOR_2_IB = PC4;
-    const uint32_t MOTOR_3_IA = PD9;
-    const uint32_t MOTOR_3_IB = PD8;
-    const uint32_t MOTOR_4_IA = PD11;
-    const uint32_t MOTOR_4_IB = PD10;
-    const uint32_t MOTOR_5_IA = PD13;
-    const uint32_t MOTOR_5_IB = PD12;
+    const uint32_t MOTOR_NUM = 5;
+    const uint32_t MOTOR_HALF_ROUND_TIME = 870;
+    const uint32_t MOTOR_HALF_ROUND_TIME_MAX = 1200;
+    const uint32_t MOTOR_PIN[MOTOR_NUM][2] =
+        {
+            {PA6, PA5},
+            {PC5, PC4},
+            {PD9, PD8},
+            {PD11, PD10},
+            {PD13, PD12},
+    };
+
 }
 
 #endif //_CONFIG_H_
