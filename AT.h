@@ -2,7 +2,14 @@
 #define _AT_H_
 
 #include <cstdint>
+#include "AutoPtr.h"
 
-#define AT_CMD_CWJAP_CUR "AT+CWJAP_CUR"
-#define AT_CMD_END "\r\n"
+namespace AT
+{
+    extern const char *ENDL;
+    extern const char *SET_AP_MODE;
+    extern AutoPtrArray<const char> CONNECT_WIFI(const char *ssid, const char *pwd);
+    extern AutoPtrArray<const char> CONNECT_TCP(const char *ip, uint16_t port);
+}
+
 #endif //_AT_H_

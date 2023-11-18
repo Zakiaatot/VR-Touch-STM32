@@ -5,38 +5,39 @@
 
 namespace DEBUGGER_CONFIG
 {
-    const uint32_t BAUD_RATE = 9600;
-    const uint32_t RX = PA10;
-    const uint32_t TX = PA9;
+    extern const uint32_t BAUD_RATE;
+    extern const uint32_t RX;
+    extern const uint32_t TX;
 }
 
 namespace SERIAL_CONFIG
 {
-    const uint32_t BAUD_RATE = 115200;
-    const uint32_t RX = PA10;
-    const uint32_t TX = PA9;
+    extern const uint32_t BAUD_RATE;
+    extern const uint32_t RX;
+    extern const uint32_t TX;
 }
 
 namespace ROCKER_CONFIG
 {
-    const uint32_t VR_X = PA3;
-    const uint32_t VR_Y = PA2;
+    extern const uint32_t VR_X;
+    extern const uint32_t VR_Y;
 }
 
 namespace MOTOR_CONFIG
 {
-    const uint32_t MOTOR_NUM = 5;
-    const uint32_t MOTOR_HALF_ROUND_TIME = 870;
-    const uint32_t MOTOR_HALF_ROUND_TIME_MAX = 1200;
-    const uint32_t MOTOR_PIN[MOTOR_NUM][2] =
-        {
-            {PA6, PA5},
-            {PC5, PC4},
-            {PD9, PD8},
-            {PD11, PD10},
-            {PD13, PD12},
-    };
+    extern const uint32_t MOTOR_NUM;
+    extern const uint32_t MOTOR_HALF_ROUND_TIME;
+    extern const uint32_t MOTOR_HALF_ROUND_TIME_MAX;
+    extern const uint32_t MOTOR_PIN[][2];
 
+}
+
+namespace NETWORK_CONFIG
+{
+    extern const char *WIFI_SSID;
+    extern const char *WIFI_PASSWORD;
+    extern const char *SERVER_IP;
+    extern const uint16_t SERVER_PORT;
 }
 
 #endif //_CONFIG_H_

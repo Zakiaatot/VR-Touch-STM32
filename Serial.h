@@ -3,6 +3,7 @@
 
 #include <HardwareSerial.h>
 #include "NoneCopyAble.h"
+#include "AutoPtr.h"
 
 class Serial : private HardwareSerial, private NoneCopyAble
 {
@@ -29,6 +30,15 @@ public:
     Serial &operator<<(const ENDL &);
     Serial &operator<<(const uint32_t &num);
     Serial &operator<<(const uint16_t &num);
+
+    // more << overload
+    template <typename T>
+    Serial &operator<<(AutoPtrArray<T> ptr)
+    {
+        T *p = ptr.Release();
+        HardwareSerial::print(p);
+        return *this;
+    };
 
     // Overload the >> operator
     Serial &operator>>(uint16_t &num);

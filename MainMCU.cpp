@@ -18,6 +18,7 @@ MainMCU::~MainMCU()
 void MainMCU::Setup()
 {
     serial_.Setup(SERIAL_CONFIG::BAUD_RATE);
+    networkMCU_.Setup();
     motorManager_.Setup();
 }
 
@@ -46,6 +47,6 @@ void MainMCU::Loop()
     {
         // serial
     }
-    
+
     motorManager_.Loop();
 }
