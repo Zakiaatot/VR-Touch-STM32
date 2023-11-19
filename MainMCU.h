@@ -23,8 +23,8 @@ public:
 private:
     Rocker rocker_;
     Serial serial_;
-    NetworkMCU &networkMCU_;
-    MotorManager &motorManager_;
+    NetworkMCU& networkMCU_;
+    MotorManager& motorManager_;
 };
 
-#endif //_MAIN_MCU_H_
+#endif //!_MAIN_MCU_H_

@@ -14,30 +14,30 @@ void Debugger::Setup(uint32_t portRate)
     HardwareSerial::begin(portRate);
 }
 
-Debugger &Debugger::operator<<(const char *str)
+Debugger& Debugger::operator<<(const char* str)
 {
     HardwareSerial::print(str);
     return *this;
 }
-Debugger &Debugger::operator<<(const String &str)
+Debugger& Debugger::operator<<(const String& str)
 {
     HardwareSerial::print(str);
     return *this;
 }
 
-Debugger &Debugger::operator<<(const uint32_t &num)
+Debugger& Debugger::operator<<(const uint32_t& num)
 {
     HardwareSerial::print(num);
     return *this;
 }
 
-Debugger &Debugger::operator<<(const uint16_t &num)
+Debugger& Debugger::operator<<(const uint16_t& num)
 {
     HardwareSerial::print(num);
     return *this;
 }
 
-Debugger &Debugger::operator<<(const ENDL &)
+Debugger& Debugger::operator<<(const ENDL&)
 {
     HardwareSerial::println();
     return *this;

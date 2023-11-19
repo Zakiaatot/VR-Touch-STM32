@@ -5,12 +5,12 @@ template <typename T>
 class AutoPtr
 {
 public:
-    explicit AutoPtr(T *p = 0)
+    explicit AutoPtr(T* p = 0)
         : rawPtr_(p)
     {
     }
 
-    AutoPtr(AutoPtr<T> &other)
+    AutoPtr(AutoPtr<T>& other)
         : rawPtr_(other.Release())
     {
     }
@@ -20,14 +20,14 @@ public:
         delete rawPtr_;
     }
 
-    T *Release()
+    T* Release()
     {
-        T *p = rawPtr_;
+        T* p = rawPtr_;
         rawPtr_ = 0;
         return p;
     }
 
-    void Reset(T *ptr = 0)
+    void Reset(T* ptr = 0)
     {
         if (rawPtr_ != ptr)
         {
@@ -36,47 +36,47 @@ public:
         rawPtr_ = ptr;
     }
 
-    T *Get() const
+    T* Get() const
     {
         return rawPtr_;
     }
 
-    AutoPtr<T> &operator=(AutoPtr<T> &&other)
+    AutoPtr<T>& operator=(AutoPtr<T>&& other)
     {
         Reset(other.Release());
         return *this;
     }
 
-    AutoPtr<T> &operator=(AutoPtr<T> &other)
+    AutoPtr<T>& operator=(AutoPtr<T>& other)
     {
         Reset(other.Release());
         return *this;
     }
 
-    T &operator*() const
+    T& operator*() const
     {
         return *Get();
     }
 
-    T *operator->() const
+    T* operator->() const
     {
         return Get();
     }
 
 private:
-    T *rawPtr_;
+    T* rawPtr_;
 };
 
 template <typename T>
 class AutoPtrArray
 {
 public:
-    explicit AutoPtrArray(T *p = 0)
+    explicit AutoPtrArray(T* p = 0)
         : rawPtr_(p)
     {
     }
 
-    AutoPtrArray(AutoPtrArray<T> &other)
+    AutoPtrArray(AutoPtrArray<T>& other)
         : rawPtr_(other.Release())
     {
     }
@@ -86,14 +86,14 @@ public:
         delete[] rawPtr_;
     }
 
-    T *Release()
+    T* Release()
     {
-        T *p = rawPtr_;
+        T* p = rawPtr_;
         rawPtr_ = 0;
         return p;
     }
 
-    void Reset(T *ptr = 0)
+    void Reset(T* ptr = 0)
     {
         if (rawPtr_ != ptr)
         {
@@ -102,35 +102,35 @@ public:
         rawPtr_ = ptr;
     }
 
-    T *Get() const
+    T* Get() const
     {
         return rawPtr_;
     }
 
-    AutoPtrArray<T> &operator=(AutoPtrArray<T> &&other)
+    AutoPtrArray<T>& operator=(AutoPtrArray<T>&& other)
     {
         Reset(other.Release());
         return *this;
     }
 
-    AutoPtrArray<T> &operator=(AutoPtrArray<T> &other)
+    AutoPtrArray<T>& operator=(AutoPtrArray<T>& other)
     {
         Reset(other.Release());
         return *this;
     }
 
-    T &operator*() const
+    T& operator*() const
     {
         return *Get();
     }
 
-    T *operator->() const
+    T* operator->() const
     {
         return Get();
     }
 
 private:
-    T *rawPtr_;
+    T* rawPtr_;
 };
 
-#endif //_AUTO_PTR_H_
+#endif //!_AUTO_PTR_H_

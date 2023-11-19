@@ -34,10 +34,10 @@ namespace MOTOR_CONFIG
 
 namespace NETWORK_CONFIG
 {
-    extern const char *WIFI_SSID;
-    extern const char *WIFI_PASSWORD;
-    extern const char *SERVER_IP;
+    extern const char* WIFI_SSID;
+    extern const char* WIFI_PASSWORD;
+    extern const char* SERVER_IP;
     extern const uint16_t SERVER_PORT;
 }
 
-#endif //_CONFIG_H_
+#endif //!_CONFIG_H_

@@ -10,4 +10,4 @@ public:
     virtual void Loop() = 0;
 };
 
-#endif //_MCU_H_
+#endif //!_MCU_H_

@@ -9,12 +9,12 @@ template <>
 class Singleton<Debugger>
 {
 public:
-    static Debugger &Instance()
+    static Debugger& Instance()
     {
         static Debugger instance(DEBUGGER_CONFIG::RX, DEBUGGER_CONFIG::TX);
         return instance;
     }
 };
 
-Debugger &GLOBAL::DEBUGGER = Singleton<Debugger>::Instance();
+Debugger& GLOBAL::DEBUGGER = Singleton<Debugger>::Instance();
 

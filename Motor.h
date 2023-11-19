@@ -32,10 +32,10 @@ private:
         DOWN,
         NONE
     };
-    friend bool operator==(const Motor::MotorStatus &status, const Motor::MotorCmd &cmd);
-    friend bool operator!=(const Motor::MotorStatus &status, const Motor::MotorCmd &cmd);
-    friend bool operator==(const Motor::MotorCmd &cmd, const Motor::MotorStatus &status);
-    friend bool operator!=(const Motor::MotorCmd &cmd, const Motor::MotorStatus &status);
+    friend bool operator==(const Motor::MotorStatus& status, const Motor::MotorCmd& cmd);
+    friend bool operator!=(const Motor::MotorStatus& status, const Motor::MotorCmd& cmd);
+    friend bool operator==(const Motor::MotorCmd& cmd, const Motor::MotorStatus& status);
+    friend bool operator!=(const Motor::MotorCmd& cmd, const Motor::MotorStatus& status);
 
     const uint32_t IA_;
     const uint32_t IB_;
@@ -49,4 +49,4 @@ private:
     void Stop();
 };
 
-#endif //_MOTOR_H_
+#endif //!_MOTOR_H_

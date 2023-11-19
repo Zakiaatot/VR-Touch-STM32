@@ -1,6 +1,6 @@
 #include "MainMCU.h"
 
-MainMCU &mainMCU = Singleton<MainMCU>::Instance();
+MainMCU& mainMCU = Singleton<MainMCU>::Instance();
 
 void setup()
 {

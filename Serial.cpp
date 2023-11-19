@@ -15,7 +15,7 @@ void Serial::Setup(uint32_t portRate)
 }
 
 // none blocking
-int Serial::Recv(char *buf)
+int Serial::Recv(char* buf)
 {
     int len = 0;
     while (Available())
@@ -27,7 +27,7 @@ int Serial::Recv(char *buf)
 }
 
 // blocking
-int Serial::RecvN(char *buf, size_t len)
+int Serial::RecvN(char* buf, size_t len)
 {
     int recvN = 0;
     size_t nLeft = len;
@@ -49,7 +49,7 @@ int Serial::RecvN(char *buf, size_t len)
 }
 
 // blocking
-size_t Serial::SendN(const char *buf, size_t len)
+size_t Serial::SendN(const char* buf, size_t len)
 {
     size_t sendN = 0;
     size_t nLeft = len;
@@ -80,47 +80,47 @@ bool Serial::Available()
     return HardwareSerial::available();
 }
 
-Serial &Serial::operator<<(const char *str)
+Serial& Serial::operator<<(const char* str)
 {
     HardwareSerial::print(str);
     return *this;
 }
-Serial &Serial::operator<<(const String &str)
+Serial& Serial::operator<<(const String& str)
 {
     HardwareSerial::print(str);
     return *this;
 }
 
-Serial &Serial::operator<<(const uint32_t &num)
+Serial& Serial::operator<<(const uint32_t& num)
 {
     HardwareSerial::print(num);
     return *this;
 }
 
-Serial &Serial::operator<<(const uint16_t &num)
+Serial& Serial::operator<<(const uint16_t& num)
 {
     HardwareSerial::print(num);
     return *this;
 }
 
-Serial &Serial::operator<<(const ENDL &)
+Serial& Serial::operator<<(const ENDL&)
 {
     HardwareSerial::println();
     return *this;
 }
 
-Serial &Serial::operator>>(uint16_t &num)
+Serial& Serial::operator>>(uint16_t& num)
 {
     char buf[sizeof(uint16_t)];
     RecvN(buf, sizeof(uint16_t));
-    num = *((uint16_t *)(buf));
+    num = *((uint16_t*)(buf));
     return *this;
 }
 
-Serial &Serial::operator>>(uint32_t &num)
+Serial& Serial::operator>>(uint32_t& num)
 {
     char buf[sizeof(uint32_t)];
     RecvN(buf, sizeof(uint32_t));
-    num = *((uint32_t *)(buf));
+    num = *((uint32_t*)(buf));
     return *this;
 }

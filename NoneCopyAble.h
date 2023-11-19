@@ -7,7 +7,7 @@ protected:
     virtual ~NoneCopyAble() {}
 
 private:
-    NoneCopyAble(const NoneCopyAble &);
-    const NoneCopyAble &operator=(const NoneCopyAble &);
+    NoneCopyAble(const NoneCopyAble&);
+    const NoneCopyAble& operator=(const NoneCopyAble&);
 };
-#endif //_NONE_COPY_ABLE_H_
+#endif //!_NONE_COPY_ABLE_H_

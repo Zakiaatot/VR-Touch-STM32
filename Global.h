@@ -7,7 +7,7 @@
 
 namespace GLOBAL
 {
-    extern Debugger &DEBUGGER;
+    extern Debugger& DEBUGGER;
 }
 
-#endif //_GLOBAL_H_
+#endif //!_GLOBAL_H_

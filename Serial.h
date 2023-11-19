@@ -13,9 +13,9 @@ public:
     ~Serial();
 
     void Setup(uint32_t portRate);
-    int Recv(char *buf);                       // none blocking
-    int RecvN(char *buf, size_t len);          // blocking
-    size_t SendN(const char *buf, size_t len); // blocking
+    int Recv(char* buf);                       // none blocking
+    int RecvN(char* buf, size_t len);          // blocking
+    size_t SendN(const char* buf, size_t len); // blocking
 
     void Flush();
     bool Available();
@@ -25,24 +25,24 @@ public:
     } endl;
 
     // Overload the << operator
-    Serial &operator<<(const char *str);
-    Serial &operator<<(const String &str);
-    Serial &operator<<(const ENDL &);
-    Serial &operator<<(const uint32_t &num);
-    Serial &operator<<(const uint16_t &num);
+    Serial& operator<<(const char* str);
+    Serial& operator<<(const String& str);
+    Serial& operator<<(const ENDL&);
+    Serial& operator<<(const uint32_t& num);
+    Serial& operator<<(const uint16_t& num);
 
     // more << overload
     template <typename T>
-    Serial &operator<<(AutoPtrArray<T> ptr)
+    Serial& operator<<(AutoPtrArray<T> ptr)
     {
-        T *p = ptr.Release();
+        T* p = ptr.Release();
         HardwareSerial::print(p);
         return *this;
     };
 
     // Overload the >> operator
-    Serial &operator>>(uint16_t &num);
-    Serial &operator>>(uint32_t &num);
+    Serial& operator>>(uint16_t& num);
+    Serial& operator>>(uint32_t& num);
 };
 
-#endif //_SERIAL_H_
+#endif //!_SERIAL_H_

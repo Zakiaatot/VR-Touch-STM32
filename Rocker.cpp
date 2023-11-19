@@ -6,8 +6,8 @@
 
 Rocker::Rocker(const uint32_t vrXPin, const uint32_t vrYPin)
     : vrXPin_(vrXPin), vrYPin_(vrYPin),
-      xStatus_(NONE), yStatus_(NONE),
-      vrXDeg_(0), vrYDeg_(0)
+    xStatus_(NONE), yStatus_(NONE),
+    vrXDeg_(0), vrYDeg_(0)
 {
 }
 
@@ -58,7 +58,7 @@ bool Rocker::Update()
     return true;
 }
 
-Debugger &operator<<(Debugger &debugger, const Rocker::Status &status)
+Debugger& operator<<(Debugger& debugger, const Rocker::Status& status)
 {
     switch (status)
     {
@@ -87,13 +87,13 @@ Debugger &operator<<(Debugger &debugger, const Rocker::Status &status)
     return debugger;
 }
 
-Debugger &operator<<(Debugger &debugger, const Rocker &rocker)
+Debugger& operator<<(Debugger& debugger, const Rocker& rocker)
 {
     debugger << " X: " << rocker.xStatus_ << ", Y: " << rocker.yStatus_;
     return debugger;
 }
 
-Serial &operator<<(Serial &serial, const Rocker::Status &status)
+Serial& operator<<(Serial& serial, const Rocker::Status& status)
 {
     switch (status)
     {
@@ -122,15 +122,15 @@ Serial &operator<<(Serial &serial, const Rocker::Status &status)
     return serial;
 }
 
-Serial &operator<<(Serial &serial, const Rocker &rocker)
+Serial& operator<<(Serial& serial, const Rocker& rocker)
 {
     serial << " X: " << rocker.xStatus_ << " " << rocker.vrXDeg_
-           << " , Y: " << rocker.yStatus_ << " " << rocker.vrYDeg_;
+        << " , Y: " << rocker.yStatus_ << " " << rocker.vrYDeg_;
     return serial;
 }
 
-OutStream &
-operator<<(OutStream &outStream, const Rocker &rocker)
+OutStream&
+operator<<(OutStream& outStream, const Rocker& rocker)
 {
     outStream << rocker.vrXDeg_ << rocker.vrYDeg_;
     return outStream;

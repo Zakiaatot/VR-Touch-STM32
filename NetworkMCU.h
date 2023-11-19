@@ -11,7 +11,7 @@ class NetworkMCU : public MCU
     friend class Singleton<NetworkMCU>;
 
 private:
-    explicit NetworkMCU(Serial &serial);
+    explicit NetworkMCU(Serial& serial);
     ~NetworkMCU();
 
 public:
@@ -19,18 +19,18 @@ public:
     void Loop();
 
 private:
-    Serial &serial_;
+    Serial& serial_;
 };
 
 template <>
 class Singleton<NetworkMCU>
 {
 public:
-    static NetworkMCU &Instance(Serial &serial_)
+    static NetworkMCU& Instance(Serial& serial_)
     {
         static NetworkMCU instance(serial_);
         return instance;
     }
 };
 
-#endif //_NETWORK_MCU_H_
+#endif //!_NETWORK_MCU_H_

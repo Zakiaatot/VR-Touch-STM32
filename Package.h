@@ -18,7 +18,7 @@ struct PackageHead
 struct Package
 {
     PackageHead head_;
-    char *body_;
+    char* body_;
 };
 
-#endif //_PACKAGE_H_
+#endif //!_PACKAGE_H_

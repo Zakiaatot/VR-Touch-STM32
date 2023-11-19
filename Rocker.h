@@ -38,15 +38,15 @@ public:
     }
 
     // debug
-    friend Debugger &
-    operator<<(Debugger &debugger, const Rocker &rocker);
+    friend Debugger&
+        operator<<(Debugger& debugger, const Rocker& rocker);
 
-    friend Serial &
-    operator<<(Serial &serial, const Rocker &rocker);
+    friend Serial&
+        operator<<(Serial& serial, const Rocker& rocker);
 
     // trans
-    friend OutStream &
-    operator<<(OutStream &outStream, const Rocker &rocker);
+    friend OutStream&
+        operator<<(OutStream& outStream, const Rocker& rocker);
 
 private:
     const uint32_t vrXPin_;
@@ -57,4 +57,4 @@ private:
     Status yStatus_;
 };
 
-#endif //_ROCKER_H_
+#endif //!_ROCKER_H_

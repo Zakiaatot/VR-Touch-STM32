@@ -3,7 +3,7 @@
 #include "Serial.h"
 #include "Config.h"
 
-NetworkMCU::NetworkMCU(Serial &serial)
+NetworkMCU::NetworkMCU(Serial& serial)
     : serial_(serial)
 {
 }
@@ -18,11 +18,11 @@ void NetworkMCU::Setup()
     serial_.Flush();
     delay(1000);
     serial_ << AT::CONNECT_WIFI(NETWORK_CONFIG::WIFI_SSID, NETWORK_CONFIG::WIFI_PASSWORD)
-            << AT::ENDL;
+        << AT::ENDL;
     serial_.Flush();
     delay(5000);
     serial_ << AT::CONNECT_TCP(NETWORK_CONFIG::SERVER_IP, NETWORK_CONFIG::SERVER_PORT)
-            << AT::ENDL;
+        << AT::ENDL;
     serial_.Flush();
     delay(1000);
 }

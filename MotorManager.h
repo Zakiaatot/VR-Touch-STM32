@@ -18,11 +18,11 @@ public:
     void Setup();
     void Loop();
 
-    Motor *GetNthMotor(uint32_t n) const { return motorArrPtr_[n]; };
+    Motor* GetNthMotor(uint32_t n) const { return motorArrPtr_[n]; };
     // void MatchMotor(const Motor::MotorStatus status[MOTOR_CONFIG::MOTOR_NUM]);
 
 private:
-    Motor **motorArrPtr_;
+    Motor** motorArrPtr_;
 };
 
-#endif //_MOTOR_MANAGER_H_
+#endif //!_MOTOR_MANAGER_H_

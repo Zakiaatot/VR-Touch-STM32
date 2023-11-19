@@ -5,7 +5,7 @@ template <typename T>
 class Singleton
 {
 public:
-    static T &Instance()
+    static T& Instance()
     {
         static T instance;
         return instance;
@@ -14,8 +14,8 @@ public:
 private:
     Singleton() {}
     ~Singleton() {}
-    const Singleton &operator=(const Singleton &);
-    Singleton(const Singleton &);
+    const Singleton& operator=(const Singleton&);
+    Singleton(const Singleton&);
 };
 
-#endif //_SINGLETON_H_
+#endif //!_SINGLETON_H_

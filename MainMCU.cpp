@@ -5,9 +5,9 @@
 
 MainMCU::MainMCU()
     : rocker_(ROCKER_CONFIG::VR_X, ROCKER_CONFIG::VR_Y),
-      serial_(SERIAL_CONFIG::RX, SERIAL_CONFIG::TX),
-      networkMCU_(Singleton<NetworkMCU>::Instance(serial_)),
-      motorManager_(Singleton<MotorManager>::Instance())
+    serial_(SERIAL_CONFIG::RX, SERIAL_CONFIG::TX),
+    networkMCU_(Singleton<NetworkMCU>::Instance(serial_)),
+    motorManager_(Singleton<MotorManager>::Instance())
 {
 }
 
