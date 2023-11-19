@@ -5,7 +5,7 @@ template <typename T>
 class AutoPtr
 {
 public:
-    explicit AutoPtr(T* p = 0)
+    AutoPtr(T* p = 0)
         : rawPtr_(p)
     {
     }
@@ -71,7 +71,7 @@ template <typename T>
 class AutoPtrArray
 {
 public:
-    explicit AutoPtrArray(T* p = 0)
+    AutoPtrArray(T* p = 0)
         : rawPtr_(p)
     {
     }
