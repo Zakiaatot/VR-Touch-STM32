@@ -54,7 +54,7 @@ InStream& InStream::operator>>(uint32_t& num)
 }
 
 OutStream::OutStream(uint32_t dSize)
-    : data_(AutoPtrArray<char>(0)),
+    : data_(0),
     dataSize_(0), dataPos_(0)
 {
     data_ = AutoPtrArray<char>(new char[dSize] {0});
