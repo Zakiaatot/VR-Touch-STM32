@@ -69,7 +69,7 @@ const char* const OutStream::Data() const
     return const_cast<const char* const>(data_.Get());
 }
 
-uint16_t OutStream::Len() const
+size_t OutStream::Len() const
 {
     return dataSize_;
 }

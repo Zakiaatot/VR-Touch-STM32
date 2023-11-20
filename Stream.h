@@ -22,7 +22,7 @@ public:
 
 private:
     const char* data_;
-    uint16_t dataPos_;
+    size_t dataPos_;
 };
 
 class OutStream : private NoneCopyAble
@@ -32,7 +32,7 @@ public:
     ~OutStream();
 
     const char* const Data() const;
-    uint16_t Len() const;
+    size_t Len() const;
 
     void Append(const char* const str, size_t len);
     void Append(void* const data, size_t len);
@@ -51,8 +51,8 @@ public:
 
 private:
     AutoPtrArray<char> data_;
-    uint16_t dataSize_;
-    uint16_t dataPos_;
+    size_t dataSize_;
+    size_t dataPos_;
 };
 
 #endif //!_STREAM_H_
