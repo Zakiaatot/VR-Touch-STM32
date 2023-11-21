@@ -30,6 +30,9 @@ bool Rocker::Update()
         vrYDeg_ = vrYDeg;
     }
 
+    Status xStatus = xStatus_;
+    Status yStatus = yStatus_;
+
     if (vrXDeg < DOWN_THRESHOLD)
     {
         xStatus_ = LEFT;
@@ -55,6 +58,10 @@ bool Rocker::Update()
     {
         yStatus_ = CENTER;
     }
+
+    if (xStatus == xStatus_ && yStatus == yStatus_)
+        return false;
+
     return true;
 }
 

@@ -2,7 +2,9 @@
 #include "AT.h"
 
 const char* AT::ENDL = "\r\n";
-const char* AT::SET_AP_MODE = "AT+CWMODE=1";
+const char* AT::SET_STA_MODE = "AT+CWMODE=1";
+const char* AT::SET_TRANSPARENT_MODE = "AT+CIPMODE=1";
+const char* AT::BEGIN_TRANSPARENT_MODE = "AT+CIPSEND";
 
 AutoPtrArray<const char> AT::CONNECT_WIFI(const char* ssid, const char* pwd)
 {

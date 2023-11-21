@@ -16,6 +16,7 @@ public:
     int Recv(char* buf);                       // none blocking
     int RecvN(char* buf, size_t len);          // blocking
     size_t SendN(const char* buf, size_t len); // blocking
+    void ClearRecvBuf();
 
     void Flush();
     bool Available();

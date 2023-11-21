@@ -25,3 +25,14 @@ void MotorManager::Loop()
     for (int i = 0; i < MOTOR_CONFIG::MOTOR_NUM; i++)
         motorArrPtr_[i]->Loop();
 }
+
+void MotorManager::MatchMotor(const bool* data)
+{
+    for (int i = 0; i < MOTOR_CONFIG::MOTOR_NUM; i++)
+    {
+        if (data[i])
+            motorArrPtr_[i]->Up();
+        else
+            motorArrPtr_[i]->Down();
+    }
+}

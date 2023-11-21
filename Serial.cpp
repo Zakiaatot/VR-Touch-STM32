@@ -70,6 +70,16 @@ size_t Serial::SendN(const char* buf, size_t len)
     return sendN;
 }
 
+void Serial::ClearRecvBuf()
+{
+    int len = 0;
+    char tmp;
+    while (Available())
+    {
+        HardwareSerial::readBytes(&tmp, 1);
+    }
+}
+
 void Serial::Flush()
 {
     HardwareSerial::flush();

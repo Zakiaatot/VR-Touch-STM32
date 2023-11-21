@@ -19,7 +19,7 @@ public:
     void Loop();
 
     Motor* GetNthMotor(uint32_t n) const { return motorArrPtr_[n]; };
-    // void MatchMotor(const Motor::MotorStatus status[MOTOR_CONFIG::MOTOR_NUM]);
+    void MatchMotor(const bool* data);
 
 private:
     Motor** motorArrPtr_;

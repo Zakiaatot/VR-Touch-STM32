@@ -2,6 +2,10 @@
 #include "MainMCU.h"
 #include "Config.h"
 #include "AT.h"
+#include "Stream.h"
+#include "Package.h"
+
+const size_t BUFFER_SIZE = 64;
 
 MainMCU::MainMCU()
     : rocker_(ROCKER_CONFIG::VR_X, ROCKER_CONFIG::VR_Y),
@@ -24,29 +28,52 @@ void MainMCU::Setup()
 
 void MainMCU::Loop()
 {
+    // send rocker data to server
     if (rocker_.Update())
     {
-        Rocker::Status status = rocker_.GetYStatus();
-        if (status == Rocker::Status::UP)
-        {
-            for (int i = 0; i < MOTOR_CONFIG::MOTOR_NUM; i++)
-            {
-                motorManager_.GetNthMotor(i)->Up();
-            }
-        }
-        else if (status == Rocker::Status::DOWN)
-        {
-            for (int i = 0; i < MOTOR_CONFIG::MOTOR_NUM; i++)
-            {
-                motorManager_.GetNthMotor(i)->Down();
-            }
-        }
+        OutStream os;
+        os << (uint16_t)PACKAGE_CMD::REPORT_ROCKER;
+        os.Skip(sizeof(PackageHead::len_));
+        os << rocker_;
+        uint16_t len = os.Len() - sizeof(PackageHead);
+        os.RePosition(sizeof(PackageHead::cmd_));
+        os << len;
+        serial_.SendN(os.Data(), os.Len());
+        serial_.Flush();
     }
 
+    // recv motor data from server
     if (serial_.Available())
     {
-        // serial
+        char buf[BUFFER_SIZE];
+        int recvN = serial_.RecvN(buf, sizeof(PackageHead));
+        if (recvN == sizeof(PackageHead))
+        {
+            InStream is(buf);
+            // head
+            uint16_t cmd;
+            uint16_t packLen;
+            is >> cmd >> packLen;
+            // body
+            if (serial_.RecvN(buf + sizeof(PackageHead), (int)packLen) == (int)packLen)
+            {
+                // exec
+                switch (cmd)
+                {
+                case (uint16_t)PACKAGE_CMD::CHANGE_MOTOR:
+                    motorManager_.MatchMotor((const bool*)(buf + sizeof(PackageHead)));
+                    break;
+                case(uint16_t)PACKAGE_CMD::REPORT_ROCKER: // never reach here
+                    break;
+                case(uint16_t)PACKAGE_CMD::PING:
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
     }
 
     motorManager_.Loop();
+    delay(10);
 }
