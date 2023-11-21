@@ -74,6 +74,7 @@ void MainMCU::Loop()
         }
     }
 
+    // sub loop
     motorManager_.Loop();
-    delay(10);
+    networkMCU_.Loop();
 }

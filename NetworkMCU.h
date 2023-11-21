@@ -17,9 +17,12 @@ private:
 public:
     void Setup();
     void Loop();
+    void Ping();
+
 
 private:
     Serial& serial_;
+    int32_t lastPingTime_;
 };
 
 template <>
