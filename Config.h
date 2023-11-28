@@ -23,6 +23,12 @@ namespace ROCKER_CONFIG
     extern const uint32_t VR_Y;
 }
 
+namespace KEY_CONFIG
+{
+    extern const uint32_t KEY_UP_PIN;
+    extern const uint32_t KEY_DOWN_PIN;
+}
+
 namespace MOTOR_CONFIG
 {
     extern const uint32_t MOTOR_NUM;

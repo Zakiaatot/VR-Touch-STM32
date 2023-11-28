@@ -9,6 +9,7 @@ const size_t BUFFER_SIZE = 64;
 
 MainMCU::MainMCU()
     : rocker_(ROCKER_CONFIG::VR_X, ROCKER_CONFIG::VR_Y),
+    key_(KEY_CONFIG::KEY_UP_PIN, KEY_CONFIG::KEY_DOWN_PIN),
     serial_(SERIAL_CONFIG::RX, SERIAL_CONFIG::TX),
     networkMCU_(Singleton<NetworkMCU>::Instance(serial_)),
     motorManager_(Singleton<MotorManager>::Instance())
@@ -21,6 +22,7 @@ MainMCU::~MainMCU()
 
 void MainMCU::Setup()
 {
+    key_.Setup();
     serial_.Setup(SERIAL_CONFIG::BAUD_RATE);
     networkMCU_.Setup();
     motorManager_.Setup();
@@ -35,6 +37,20 @@ void MainMCU::Loop()
         os << (uint16_t)PACKAGE_CMD::REPORT_ROCKER;
         os.Skip(sizeof(PackageHead::len_));
         os << rocker_;
+        uint16_t len = os.Len() - sizeof(PackageHead);
+        os.RePosition(sizeof(PackageHead::cmd_));
+        os << len;
+        serial_.SendN(os.Data(), os.Len());
+        serial_.Flush();
+    }
+
+    // send key data to server
+    if (key_.Scan())
+    {
+        OutStream os;
+        os << (uint16_t)PACKAGE_CMD::REPORT_KEY;
+        os.Skip(sizeof(PackageHead::len_));
+        os << key_;
         uint16_t len = os.Len() - sizeof(PackageHead);
         os.RePosition(sizeof(PackageHead::cmd_));
         os << len;

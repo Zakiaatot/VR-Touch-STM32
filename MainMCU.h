@@ -7,6 +7,7 @@
 #include "Serial.h"
 #include "NetworkMCU.h"
 #include "MotorManager.h"
+#include "Key.h"
 
 class MainMCU : public MCU
 {
@@ -22,6 +23,7 @@ public:
 
 private:
     Rocker rocker_;
+    Key key_;
     Serial serial_;
     NetworkMCU& networkMCU_;
     MotorManager& motorManager_;
